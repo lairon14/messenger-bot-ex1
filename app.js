@@ -553,9 +553,31 @@ function sendTextMessage(recipientId, messageText) {
                                       fallback_url: "https://bot-test-lacosta.herokuapp.com/"
                                   }
                               ]
+                          },
+                          {
+                              title: "Classic White T-Shirt",
+                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
+                              subtitle: "100% Cotton, 200% Comfortable",
+                              default_action: {
+                                  type: "web_url",
+                                  url: "https://bot-test-lacosta.herokuapp.com/view?item=100",
+                                  messenger_extensions: true,
+                                  webview_height_ratio: "tall",
+                                  fallback_url: "https://bot-test-lacosta.herokuapp.com/"
+                              },
+                              buttons: [
+                                  {
+                                      title: "Buy",
+                                      type: "web_url",
+                                      url: "https://bot-test-lacosta.herokuapp.com/shop?item=100",
+                                      messenger_extensions: true,
+                                      webview_height_ratio: "tall",
+                                      fallback_url: "https://bot-test-lacosta.herokuapp.com/"
+                                  }
+                              ]
                           }
                       ],
-                          buttons: [
+                      buttons: [
                           {
                               title: "View More",
                               type: "postback",
