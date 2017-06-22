@@ -534,11 +534,11 @@ function sendTextMessage(recipientId, messageText) {
                           elements: [
                           {
                               title: "Classic White T-Shirt",
-                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
+                              image_url: SERVER_URL + "/assets/rift.png",
                               subtitle: "100% Cotton, 200% Comfortable",
                               default_action: {
                                   type: "web_url",
-                                  url: "https://bot-test-lacosta.herokuapp.com/view?item=100",
+                                  url: "https://bot-test-lacosta.herokuapp.com/",
                                   messenger_extensions: true,
                                   webview_height_ratio: "tall",
                                   fallback_url: "https://bot-test-lacosta.herokuapp.com/"
@@ -547,7 +547,7 @@ function sendTextMessage(recipientId, messageText) {
                                   {
                                       title: "Buy",
                                       type: "web_url",
-                                      url: "https://bot-test-lacosta.herokuapp.com/shop?item=100",
+                                      url: "https://bot-test-lacosta.herokuapp.com/",
                                       messenger_extensions: true,
                                       webview_height_ratio: "tall",
                                       fallback_url: "https://bot-test-lacosta.herokuapp.com/"
@@ -556,11 +556,11 @@ function sendTextMessage(recipientId, messageText) {
                           },
                           {
                               title: "Classic White T-Shirt",
-                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
+                              image_url: SERVER_URL + "/assets/rift.png",
                               subtitle: "100% Cotton, 200% Comfortable",
                               default_action: {
                                   type: "web_url",
-                                  url: "https://bot-test-lacosta.herokuapp.com/view?item=100",
+                                  url: "https://bot-test-lacosta.herokuapp.com/",
                                   messenger_extensions: true,
                                   webview_height_ratio: "tall",
                                   fallback_url: "https://bot-test-lacosta.herokuapp.com/"
@@ -569,7 +569,7 @@ function sendTextMessage(recipientId, messageText) {
                                   {
                                       title: "Buy",
                                       type: "web_url",
-                                      url: "https://bot-test-lacosta.herokuapp.com/shop?item=100",
+                                      url: "https://bot-test-lacosta.herokuapp.com/",
                                       messenger_extensions: true,
                                       webview_height_ratio: "tall",
                                       fallback_url: "https://bot-test-lacosta.herokuapp.com/"
