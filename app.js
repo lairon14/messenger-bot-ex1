@@ -82,7 +82,7 @@ app.get('/webhook', function(req, res) {
  */
 app.post('/webhook', function (req, res) {
   var data = req.body;
-    console.log("Webhook received message %s: ", data);
+
   // Make sure this is a page subscription
   if (data.object == 'page') {
     // Iterate over each entry
@@ -93,6 +93,7 @@ app.post('/webhook', function (req, res) {
 
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
+        console.log("Request: %s ", messagingEvent.message);
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
         } else if (messagingEvent.message) {
