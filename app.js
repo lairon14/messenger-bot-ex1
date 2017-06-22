@@ -534,7 +534,7 @@ function sendTextMessage(recipientId, messageText) {
                           elements: [
                           {
                               title: "Classic White T-Shirt",
-                              image_url: SERVER_URL + "/assets/rift.png",
+                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
                               subtitle: "100% Cotton, 200% Comfortable",
                               buttons: [
                                   {
@@ -546,7 +546,31 @@ function sendTextMessage(recipientId, messageText) {
                           },
                           {
                               title: "Classic White T-Shirt",
-                              image_url: SERVER_URL + "/assets/rift.png",
+                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
+                              subtitle: "100% Cotton, 200% Comfortable",
+                              buttons: [
+                                  {
+                                      title: "View More",
+                                      type: "postback",
+                                      payload: "payload"
+                                  }
+                              ]
+                          },
+                          {
+                              title: "Classic White T-Shirt",
+                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
+                              subtitle: "100% Cotton, 200% Comfortable",
+                              buttons: [
+                                  {
+                                      title: "View More",
+                                      type: "postback",
+                                      payload: "payload"
+                                  }
+                              ]
+                          },
+                          {
+                              title: "Classic White T-Shirt",
+                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
                               subtitle: "100% Cotton, 200% Comfortable",
                               buttons: [
                                   {
