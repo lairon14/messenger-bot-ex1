@@ -536,21 +536,11 @@ function sendTextMessage(recipientId, messageText) {
                               title: "Classic White T-Shirt",
                               image_url: SERVER_URL + "/assets/rift.png",
                               subtitle: "100% Cotton, 200% Comfortable",
-                              default_action: {
-                                  type: "web_url",
-                                  url: "https://bot-test-lacosta.herokuapp.com/",
-                                  messenger_extensions: true,
-                                  webview_height_ratio: "tall",
-                                  fallback_url: "https://bot-test-lacosta.herokuapp.com/"
-                              },
                               buttons: [
                                   {
-                                      title: "Buy",
-                                      type: "web_url",
-                                      url: "https://bot-test-lacosta.herokuapp.com/",
-                                      messenger_extensions: true,
-                                      webview_height_ratio: "tall",
-                                      fallback_url: "https://bot-test-lacosta.herokuapp.com/"
+                                      title: "View More",
+                                      type: "postback",
+                                      payload: "payload"
                                   }
                               ]
                           },
@@ -558,21 +548,11 @@ function sendTextMessage(recipientId, messageText) {
                               title: "Classic White T-Shirt",
                               image_url: SERVER_URL + "/assets/rift.png",
                               subtitle: "100% Cotton, 200% Comfortable",
-                              default_action: {
-                                  type: "web_url",
-                                  url: "https://bot-test-lacosta.herokuapp.com/",
-                                  messenger_extensions: true,
-                                  webview_height_ratio: "tall",
-                                  fallback_url: "https://bot-test-lacosta.herokuapp.com/"
-                              },
                               buttons: [
                                   {
-                                      title: "Buy",
-                                      type: "web_url",
-                                      url: "https://bot-test-lacosta.herokuapp.com/",
-                                      messenger_extensions: true,
-                                      webview_height_ratio: "tall",
-                                      fallback_url: "https://bot-test-lacosta.herokuapp.com/"
+                                      title: "View More",
+                                      type: "postback",
+                                      payload: "payload"
                                   }
                               ]
                           }
