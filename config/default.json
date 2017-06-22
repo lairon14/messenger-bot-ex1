@@ -1,6 +1,6 @@
 {
-    "appSecret": "92b007b701172830af187807fb32db91",
-    "pageAccessToken": "EAAFroXYA85sBAA7GIg6EKaZCTBfygttNogmzAZBcvtnGmYmoyZA2FRqxlxnUdCI1IvIziVZCaCbr3m06MAv4EDRPDLbomsuWZCKB9MvT5G79NpAtWzDLNlaogNA71GqfWNwuGuCvq7fexhoLN9h2XSjyDBKQGHp0WlOUIvfhg9gZDZD",
+    "appSecret": "23e0d1176b7670c2ebd1f59f597b83af",
+    "pageAccessToken": "EAAK3Wnyxi80BAHZBzCJCe3kY8DnaY0m7s5aTyCRYE8IJXM8dG4LUrijz76taGfTSxohcVuRhB98ZC3fk5cnY7KZAmXilsEkWqRigZCyw33cMZAaYkOD44EXF04GBuIuImHguYAcjib8Dp3abjdy6idhryIKmgT8d0C3S3QNd8ZBQZDZD",
     "validationToken": "verify_token",
     "serverURL": "https://bot-test-lacosta.herokuapp.com"
 }
