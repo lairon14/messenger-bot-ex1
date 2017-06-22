@@ -533,9 +533,9 @@ function sendTextMessage(recipientId, messageText) {
                           top_element_style: "compact",
                           elements: [
                           {
-                              title: "Classic White T-Shirt",
+                              title: "Plata Incentivos M",
                               image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
-                              subtitle: "100% Cotton, 200% Comfortable",
+                              subtitle: "Bs.763,15",
                               buttons: [
                                   {
                                       title: "View More",
@@ -545,9 +545,9 @@ function sendTextMessage(recipientId, messageText) {
                               ]
                           },
                           {
-                              title: "Classic White T-Shirt",
+                              title: "Plata Viaticos M",
                               image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
-                              subtitle: "100% Cotton, 200% Comfortable",
+                              subtitle: "Bs.200,15",
                               buttons: [
                                   {
                                       title: "View More",
@@ -557,21 +557,9 @@ function sendTextMessage(recipientId, messageText) {
                               ]
                           },
                           {
-                              title: "Classic White T-Shirt",
+                              title: "Plata Regalo M",
                               image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
-                              subtitle: "100% Cotton, 200% Comfortable",
-                              buttons: [
-                                  {
-                                      title: "View More",
-                                      type: "postback",
-                                      payload: "payload"
-                                  }
-                              ]
-                          },
-                          {
-                              title: "Classic White T-Shirt",
-                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
-                              subtitle: "100% Cotton, 200% Comfortable",
+                              subtitle: "Bs.0,00",
                               buttons: [
                                   {
                                       title: "View More",
