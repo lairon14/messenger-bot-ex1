@@ -575,7 +575,8 @@ function sendTextMessage(recipientId, messageText) {
  *
  */
 function sendTextMessageWelcome(recipientId, userInfo) {
-    console.log("SEND MESSAGE WELCOME: %s", userInfo.first_name);
+  var userObj = JSON.parse(userInfo);
+    console.log("SEND MESSAGE WELCOME: %s", userObj.first_name);
     var messageData = {
         recipient: {
             id: recipientId
@@ -899,8 +900,7 @@ function getInformacionUsuario(senderID) {
 
             console.log("Response user info: %s", JSON.stringify(body));
 
-            var json = JSON.parse(body);
-            console.log("JsonName %s", json.first_name);
+            var json = JSON.stringify(body);
 
             return json;
 
