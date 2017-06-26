@@ -576,13 +576,13 @@ function sendTextMessage(recipientId, messageText) {
  */
 function sendTextMessageWelcome(recipientId, userInfo) {
   var userObj = JSON.parse(userInfo);
-    console.log("SEND MESSAGE WELCOME: %s", userObj.first_name);
+    console.log("Send Message Welcome: %s", userObj.first_name);
     var messageData = {
         recipient: {
             id: recipientId
         },
         message: {
-            text: "Hola " + userInfo.first_name + ", soy el bot de Novopayment.",
+            text: "Hola " + userObj.first_name + ", soy el bot de Novopayment.",
             metadata: "DEVELOPER_DEFINED_METADATA"
         }
     };
