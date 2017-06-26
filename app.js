@@ -899,7 +899,7 @@ function getInformacionUsuario(senderID) {
 
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            jsonResp = body;
+            jsonResp = JSON.parse(body);
             console.log("Response user info1: %s", body);
 
         } else {
