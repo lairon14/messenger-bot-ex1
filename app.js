@@ -96,9 +96,6 @@ app.post('/webhook', function (req, res) {
 
         console.log("Request: %s ", messagingEvent.message);
 
-        //obtengo informacion de usuario
-        getInformacionUsuario(messagingEvent)
-
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
         } else if (messagingEvent.message) {
@@ -364,12 +361,25 @@ function receivedPostback(event) {
   // button for Structured Messages. 
   var payload = event.postback.payload;
 
-  console.log("Received postback for user %d and page %d with payload '%s' " + 
-    "at %d", senderID, recipientID, payload, timeOfPostback);
+  //valido postback de inicio
+  if('GET_STARTED_PAYLOAD'===payload.toString().trim()){
 
-  // When a postback is called, we'll send a message back to the sender to 
-  // let them know it was successful
-  sendTextMessage(senderID, "Postback called");
+      console.log("Received postback for user %d and page %d with payload '%s' " +
+          "at %d", senderID, recipientID, payload, timeOfPostback);
+
+      //obtengo informacion de usuario
+      var userInfo = getInformacionUsuario(senderID);
+
+      sendTextMessageWelcome(senderID, userInfo);
+
+  } else {
+      console.log("Received postback for user %d and page %d with payload '%s' " +
+          "at %d", senderID, recipientID, payload, timeOfPostback);
+
+      // When a postback is called, we'll send a message back to the sender to
+      // let them know it was successful
+      sendTextMessage(senderID, "Postback called");
+  }
 }
 
 /*
@@ -525,83 +535,61 @@ function sendFileMessage(recipientId) {
  *
  */
 function sendTextMessage(recipientId, messageText) {
-  //if(messageText==="hola"){
-      console.log("Text: %s" + messageText);
-      var messageData = {
-          recipient:{
-              id: recipientId
-          }, message: {
-              attachment: {
+  var messageData;
 
-                  type: "template",
-                      payload: {
-                      template_type: "list",
-                          top_element_style: "compact",
-                          elements: [
-                          {
-                              title: "Plata Incentivos M",
-                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
-                              subtitle: "Bs.763,15",
-                              buttons: [
-                                  {
-                                      title: "View More",
-                                      type: "postback",
-                                      payload: "payload"
-                                  }
-                              ]
-                          },
-                          {
-                              title: "Plata Viaticos M",
-                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
-                              subtitle: "Bs.200,15",
-                              buttons: [
-                                  {
-                                      title: "View More",
-                                      type: "postback",
-                                      payload: "payload"
-                                  }
-                              ]
-                          },
-                          {
-                              title: "Plata Regalo M",
-                              image_url: "http://plata.com.ve/wp-content/uploads/2016/12/Tarjeta-Plata.png",
-                              subtitle: "Bs.0,00",
-                              buttons: [
-                                  {
-                                      title: "View More",
-                                      type: "postback",
-                                      payload: "payload"
-                                  }
-                              ]
-                          }
-                      ],
-                      buttons: [
-                          {
-                              title: "View More",
-                              type: "postback",
-                              payload: "payload"
-                          }
-                      ]
-                  }
-              },
+  if(messageText.toString().trim()==="GET_STARTED_PAYLOAD"){
+
+      console.log("Text: %s", messageText);
+
+      messageData = {
+          recipient: {
+              id: recipientId
+          },
+          message: {
+              text: "Hola " + + ", soy el bot de Novopayment.",
               metadata: "DEVELOPER_DEFINED_METADATA"
           }
-
       };
 
-  //} else {
+      //envio mensaje de respuesta
+      callSendAPI(messageData);
 
-      // var messageData = {
-      //     recipient: {
-      //         id: recipientId
-      //     },
-      //     message: {
-      //         text: messageText,
-      //         metadata: "DEVELOPER_DEFINED_METADATA"
-      //     }
-      // };
-  // }
-  callSendAPI(messageData);
+  } else {
+
+      messageData = {
+          recipient: {
+              id: recipientId
+          },
+          message: {
+              text: messageText,
+              metadata: "DEVELOPER_DEFINED_METADATA"
+          }
+      };
+      callSendAPI(messageData);
+  }
+
+}
+
+/*
+ * Send a text message using the Send API.
+ *
+ */
+function sendTextMessageWelcome(recipientId, userInfo) {
+
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            text: "Hola " + userInfo.first_name + ", soy el bot de Novopayment.",
+            metadata: "DEVELOPER_DEFINED_METADATA"
+        }
+    };
+
+    //envio mensaje de respuesta
+    callSendAPI(messageData);
+    //envio mensaje de respuesta
+    callSendAPI(messageData);
 }
 
 /*
@@ -899,8 +887,7 @@ function callSendAPI(messageData) {
   });  
 }
 
-function getInformacionUsuario(event) {
-    var senderID = event.sender.id;
+function getInformacionUsuario(senderID) {
     request({
         uri: 'https://graph.facebook.com/v2.6/' + senderID,
         qs: { fields: 'first_name,last_name,profile_pic,locale,timezone,gender',
@@ -909,14 +896,11 @@ function getInformacionUsuario(event) {
 
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            var firstName = body.first_name;
-            var lastName = body.last_name;
-            var locale = body.locale;
-            var timezone = body.timezone;
-            var gender = body.gender;
 
             console.log("Response user info: %s", JSON.stringify(body));
             console.log("Successfully get info of user id %s", senderID);
+
+            return body;
 
         } else {
             console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
