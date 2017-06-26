@@ -584,15 +584,15 @@ function sendTextMessageWelcome(recipientId) {
 
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-
-            console.log("Send Message Welcome: %s", body.first_name);
+            var jsonObj = JSON.parse(body);
+            console.log("Send Message Welcome: %s", jsonObj.first_name);
 
             var messageData = {
                 recipient: {
                     id: recipientId
                 },
                 message: {
-                    text: "Hola " + body.first_name + ", soy el bot de Novopayment.",
+                    text: "Hola " + jsonObj.first_name + ", soy el bot de Novopayment.",
                     metadata: "DEVELOPER_DEFINED_METADATA"
                 }
             };
