@@ -915,7 +915,7 @@ function getInformacionUsuario(event) {
             var timezone = body.timezone;
             var gender = body.gender;
 
-
+            console.log("Response user info: %s", JSON.stringify(body));
             console.log("Successfully get info of user id %s", senderID);
 
         } else {
