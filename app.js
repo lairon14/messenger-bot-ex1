@@ -898,11 +898,9 @@ function getInformacionUsuario(senderID) {
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
 
-            console.log("Response user info1: %s", JSON.stringify(body));
             console.log("Response user info2: %s", body);
-            console.log("Response user info3: %s", JSON.parse(body));
 
-            return JSON.stringify(body);  
+            return body;
 
         } else {
             console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
