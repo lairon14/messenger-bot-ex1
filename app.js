@@ -575,7 +575,7 @@ function sendTextMessage(recipientId, messageText) {
  *
  */
 function sendTextMessageWelcome(recipientId, name) {
-    console.log("SEND MESSAGE WELCOME: %s", JSON.stringify(userInfo));
+    console.log("SEND MESSAGE WELCOME: %s", name);
     var messageData = {
         recipient: {
             id: recipientId
