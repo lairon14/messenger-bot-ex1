@@ -20,8 +20,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="579" column="20" lean-forward="true" selection-start-line="579" selection-start-column="20" selection-end-line="579" selection-end-column="20" />
+            <state relative-caret-position="322">
+              <caret line="900" column="64" lean-forward="false" selection-start-line="900" selection-start-column="64" selection-end-line="900" selection-end-column="64" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -45,8 +45,8 @@
     <findStrings>
       <find>SERVER_URL</find>
       <find>receivedPostback</find>
-      <find>sendTextMessageWelcome</find>
       <find>getInformacionUsuario</find>
+      <find>sendTextMessageWelcome</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -181,12 +181,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1498147058045</updated>
-      <workItem from="1498147062968" duration="19141000" />
+      <workItem from="1498147062968" duration="19517000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19141000" />
+    <option name="totallyTimeSpent" value="19517000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -232,8 +232,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="579" column="20" lean-forward="true" selection-start-line="579" selection-start-column="20" selection-end-line="579" selection-end-column="20" />
+        <state relative-caret-position="322">
+          <caret line="900" column="64" lean-forward="false" selection-start-line="900" selection-start-column="64" selection-end-line="900" selection-end-column="64" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>

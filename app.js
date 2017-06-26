@@ -888,7 +888,6 @@ function callSendAPI(messageData) {
 }
 
 function getInformacionUsuario(senderID) {
-    var respBody;
     request({
         uri: 'https://graph.facebook.com/v2.6/' + senderID,
         qs: { fields: 'first_name,last_name,profile_pic,locale,timezone,gender',
@@ -899,16 +898,14 @@ function getInformacionUsuario(senderID) {
         if (!error && response.statusCode == 200) {
 
             console.log("Response user info: %s", JSON.stringify(body));
-            console.log("Successfully get info of user id %s", senderID);
+            console.log("Successfully get info of user id %s", body.first_name);
 
-            respBody = body.first_name;
+            return body.first_name;
 
         } else {
             console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
-            respBody = "";
         }
     });
-    return respBody;
 }
 
 // Start server
