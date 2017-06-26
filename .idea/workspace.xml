@@ -20,8 +20,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="902" column="47" lean-forward="false" selection-start-line="902" selection-start-column="47" selection-end-line="902" selection-end-column="47" />
+            <state relative-caret-position="458">
+              <caret line="905" column="35" lean-forward="true" selection-start-line="905" selection-start-column="35" selection-end-line="905" selection-end-column="35" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -181,15 +181,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1498147058045</updated>
-      <workItem from="1498147062968" duration="20063000" />
+      <workItem from="1498147062968" duration="20662000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20063000" />
+    <option name="totallyTimeSpent" value="20662000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13680297" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -232,8 +232,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="902" column="47" lean-forward="false" selection-start-line="902" selection-start-column="47" selection-end-line="902" selection-end-column="47" />
+        <state relative-caret-position="458">
+          <caret line="905" column="35" lean-forward="true" selection-start-line="905" selection-start-column="35" selection-end-line="905" selection-end-column="35" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
