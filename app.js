@@ -369,7 +369,8 @@ function receivedPostback(event) {
 
       //obtengo informacion de usuario
       var userInfo = getInformacionUsuario(senderID);
-
+      console.log("Response user info2: %s", userInfo);
+      console.log("Response user info3: %s", JSON.stringify(userInfo));
       sendTextMessageWelcome(senderID, userInfo);
 
   } else {
@@ -898,7 +899,7 @@ function getInformacionUsuario(senderID) {
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
 
-            console.log("Response user info2: %s", body);
+            console.log("Response user info1: %s", body);
 
             return body;
 
