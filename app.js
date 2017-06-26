@@ -575,7 +575,7 @@ function sendTextMessage(recipientId, messageText) {
  *
  */
 function sendTextMessageWelcome(recipientId, userInfo) {
-
+    console.log("SEND MESSAGE WELCOME: %s", JSON.stringify(userInfo));
     var messageData = {
         recipient: {
             id: recipientId
@@ -888,6 +888,7 @@ function callSendAPI(messageData) {
 }
 
 function getInformacionUsuario(senderID) {
+    var respBody;
     request({
         uri: 'https://graph.facebook.com/v2.6/' + senderID,
         qs: { fields: 'first_name,last_name,profile_pic,locale,timezone,gender',
@@ -900,12 +901,14 @@ function getInformacionUsuario(senderID) {
             console.log("Response user info: %s", JSON.stringify(body));
             console.log("Successfully get info of user id %s", senderID);
 
-            return body;
+            respBody = body;
 
         } else {
             console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
+            respBody = "";
         }
     });
+    return respBody;
 }
 
 // Start server
