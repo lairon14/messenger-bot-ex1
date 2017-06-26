@@ -20,8 +20,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="322">
-              <caret line="900" column="64" lean-forward="false" selection-start-line="900" selection-start-column="64" selection-end-line="900" selection-end-column="64" />
+            <state relative-caret-position="407">
+              <caret line="902" column="47" lean-forward="false" selection-start-line="902" selection-start-column="47" selection-end-line="902" selection-end-column="47" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -181,12 +181,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1498147058045</updated>
-      <workItem from="1498147062968" duration="19517000" />
+      <workItem from="1498147062968" duration="20063000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19517000" />
+    <option name="totallyTimeSpent" value="20063000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -232,8 +232,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="900" column="64" lean-forward="false" selection-start-line="900" selection-start-column="64" selection-end-line="900" selection-end-column="64" />
+        <state relative-caret-position="407">
+          <caret line="902" column="47" lean-forward="false" selection-start-line="902" selection-start-column="47" selection-end-line="902" selection-end-column="47" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
