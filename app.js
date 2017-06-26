@@ -93,7 +93,12 @@ app.post('/webhook', function (req, res) {
 
       // Iterate over each messaging event
       pageEntry.messaging.forEach(function(messagingEvent) {
+
         console.log("Request: %s ", messagingEvent.message);
+
+        //obtengo informacion de usuario
+        getInformacionUsuario(messagingEvent)
+
         if (messagingEvent.optin) {
           receivedAuthentication(messagingEvent);
         } else if (messagingEvent.message) {
@@ -527,6 +532,7 @@ function sendTextMessage(recipientId, messageText) {
               id: recipientId
           }, message: {
               attachment: {
+
                   type: "template",
                       payload: {
                       template_type: "list",
@@ -891,6 +897,31 @@ function callSendAPI(messageData) {
       console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
     }
   });  
+}
+
+function getInformacionUsuario(event) {
+    var senderID = event.sender.id;
+    request({
+        uri: 'https://graph.facebook.com/v2.6/' + senderID,
+        qs: { fields: 'first_name,last_name,profile_pic,locale,timezone,gender',
+              access_token: PAGE_ACCESS_TOKEN},
+        method: 'GET'
+
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var firstName = body.first_name;
+            var lastName = body.last_name;
+            var locale = body.locale;
+            var timezone = body.timezone;
+            var gender = body.gender;
+
+
+            console.log("Successfully get info of user id %s", senderID);
+
+        } else {
+            console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
+        }
+    });
 }
 
 // Start server
