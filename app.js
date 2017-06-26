@@ -368,10 +368,10 @@ function receivedPostback(event) {
           "at %d", senderID, recipientID, payload, timeOfPostback);
 
       //obtengo informacion de usuario
-      var userInfo = getInformacionUsuario(senderID);
-      console.log("Response user info2: %s", userInfo);
-      console.log("Response user info3: %s", JSON.stringify(userInfo));
-      sendTextMessageWelcome(senderID, userInfo);
+      // var userInfo = getInformacionUsuario(senderID);
+      // console.log("Response user info2: %s", userInfo);
+      // console.log("Response user info3: %s", JSON.stringify(userInfo));
+      sendTextMessageWelcome(senderID);
 
   } else {
       console.log("Received postback for user %d and page %d with payload '%s' " +
@@ -575,23 +575,50 @@ function sendTextMessage(recipientId, messageText) {
  * Send a text message using the Send API.
  *
  */
-function sendTextMessageWelcome(recipientId, userInfo) {
-  var userObj = JSON.parse(userInfo);
-    console.log("Send Message Welcome: %s", userObj.first_name);
-    var messageData = {
-        recipient: {
-            id: recipientId
-        },
-        message: {
-            text: "Hola " + userObj.first_name + ", soy el bot de Novopayment.",
-            metadata: "DEVELOPER_DEFINED_METADATA"
-        }
-    };
+function sendTextMessageWelcome(recipientId) {
+    request({
+        uri: 'https://graph.facebook.com/v2.6/' + recipientId,
+        qs: { fields: 'first_name,last_name,profile_pic,locale,timezone,gender',
+            access_token: PAGE_ACCESS_TOKEN},
+        method: 'GET'
 
-    //envio mensaje de respuesta
-    callSendAPI(messageData);
-    //envio mensaje de respuesta
-    callSendAPI(messageData);
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+
+            console.log("Send Message Welcome: %s", body.first_name);
+
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: "Hola " + body.first_name + ", soy el bot de Novopayment.",
+                    metadata: "DEVELOPER_DEFINED_METADATA"
+                }
+            };
+
+            //envio mensaje de respuesta
+            callSendAPI(messageData);
+            //envio mensaje de respuesta
+            callSendAPI(messageData);
+
+        } else {
+            console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
+
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: "Error, intente nuevamente.",
+                    metadata: "DEVELOPER_DEFINED_METADATA"
+                }
+            };
+
+            //envio mensaje de respuesta
+            callSendAPI(messageData);
+        }
+    });
 }
 
 /*
@@ -890,7 +917,6 @@ function callSendAPI(messageData) {
 }
 
 function getInformacionUsuario(senderID) {
-    var jsonResp;
     request({
         uri: 'https://graph.facebook.com/v2.6/' + senderID,
         qs: { fields: 'first_name,last_name,profile_pic,locale,timezone,gender',
@@ -899,14 +925,13 @@ function getInformacionUsuario(senderID) {
 
     }, function (error, response, body) {
         if (!error && response.statusCode == 200) {
-            jsonResp = JSON.parse(body);
-            console.log("Response user info1: %s", body);
+
+            console.log("Response user info1: %s", body.first_name);
 
         } else {
             console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
         }
     });
-    return jsonResp;
 }
 
 // Start server
