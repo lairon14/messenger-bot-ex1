@@ -368,9 +368,9 @@ function receivedPostback(event) {
           "at %d", senderID, recipientID, payload, timeOfPostback);
 
       //obtengo informacion de usuario
-      var name = getInformacionUsuario(senderID);
+      var userInfo = getInformacionUsuario(senderID);
 
-      sendTextMessageWelcome(senderID, name);
+      sendTextMessageWelcome(senderID, userInfo);
 
   } else {
       console.log("Received postback for user %d and page %d with payload '%s' " +
@@ -574,14 +574,14 @@ function sendTextMessage(recipientId, messageText) {
  * Send a text message using the Send API.
  *
  */
-function sendTextMessageWelcome(recipientId, name) {
-    console.log("SEND MESSAGE WELCOME: %s", name);
+function sendTextMessageWelcome(recipientId, userInfo) {
+    console.log("SEND MESSAGE WELCOME: %s", userInfo.first_name);
     var messageData = {
         recipient: {
             id: recipientId
         },
         message: {
-            text: "Hola " + name + ", soy el bot de Novopayment.",
+            text: "Hola " + userInfo.first_name + ", soy el bot de Novopayment.",
             metadata: "DEVELOPER_DEFINED_METADATA"
         }
     };
@@ -898,12 +898,11 @@ function getInformacionUsuario(senderID) {
         if (!error && response.statusCode == 200) {
 
             console.log("Response user info: %s", JSON.stringify(body));
-            console.log("JSON1 %s", JSON.parse(body));
-            var json = JSON.parse(body);
 
-            console.log("JSON2 %s", json);
+            var json = JSON.parse(body);
             console.log("JsonName %s", json.first_name);
-            return json.first_name;
+
+            return json;
 
         } else {
             console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
