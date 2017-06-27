@@ -368,11 +368,15 @@ function receivedPostback(event) {
           "at %d", senderID, recipientID, payload, timeOfPostback);
 
       //obtengo informacion de usuario
-      // var userInfo = getInformacionUsuario(senderID);
-      // console.log("Response user info2: %s", userInfo);
-      // console.log("Response user info3: %s", JSON.stringify(userInfo));
-      sendTextMessageWelcome(senderID);
+      sendWelcomeTextMessage(senderID);
 
+  } else if('ACEPTO_TC'===payload.toString().trim()) {
+      console.log("Received postback for user %d and page %d with payload '%s' " +
+          "at %d", senderID, recipientID, payload, timeOfPostback);
+
+      // When a postback is called, we'll send a message back to the sender to
+      // let them know it was successful
+      sendTextMessageAceptoTC(senderID);
   } else {
       console.log("Received postback for user %d and page %d with payload '%s' " +
           "at %d", senderID, recipientID, payload, timeOfPostback);
@@ -552,7 +556,7 @@ function sendTextMessage(recipientId, messageText) {
  * Send a text message using the Send API.
  *
  */
-function sendTextMessageWelcome(recipientId) {
+function sendWelcomeTextMessage(recipientId) {
     request({
         uri: 'https://graph.facebook.com/v2.6/' + recipientId,
         qs: { fields: 'first_name,last_name,profile_pic,locale,timezone,gender',
@@ -645,6 +649,62 @@ function sendTextMessageWelcome(recipientId) {
             callSendAPI(messageData);
         }
     });
+}
+
+/*
+ * Send a text message using the Send API.
+ *
+ */
+function sendTextMessageAceptoTC(recipientId) {
+
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            text: "Estas son las opciones que tenemos para ti :D:",
+            metadata: "DEVELOPER_DEFINED_METADATA"
+        }
+    };
+
+    //envio mensaje de respuesta
+    callSendAPI(messageData);
+
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "generic",
+                    elements: [{
+                        title: "Consulta de Saldo",
+                        subtitle: "Consulta el saldo de una tarjeta asociada al usuario.",
+                        image_url: "http://remateskozak.cl/wpkozak/wp-content/uploads/header-consulta-saldo1.png",
+                        buttons: [{
+                            type: "postback",
+                            title: "Consultar Saldo",
+                            payload: "CONSULTA_SALDO",
+                        }],
+                    }, {
+                        title: "Ver Tarjetas",
+                        subtitle: "Obtiene todas las tarjetas asociadas al usuario.",
+                        image_url: "https://us.123rf.com/450wm/sukhadukha/sukhadukha1109/sukhadukha110900003/10499938-tarjetas-de-cr-dito-visa-para-facilitar-la-transacci-n.jpg?ver=6",
+                        buttons: [{
+                            type: "postback",
+                            title: "Ver Tarjetas",
+                            payload: "LISTA_TARJETAS",
+                        }]
+                    }]
+                }
+            }
+        }
+    };
+
+    callSendAPI(messageData);
+
 }
 
 /*
