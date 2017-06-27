@@ -18,7 +18,7 @@ const
   https = require('https'),  
   request = require('request');
 
-var sleepms = require('sleep-ms');
+var sleep = require('system-sleep');
 var app = express();
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
@@ -578,7 +578,7 @@ function sendTextMessageWelcome(recipientId) {
             //envio mensaje de respuesta
             callSendAPI(messageData);
 
-            sleepms(2000);
+            sleep(2000);
 
             var messageData2 = {
                 recipient: {
@@ -604,7 +604,7 @@ function sendTextMessageWelcome(recipientId) {
             //envio mensaje de respuesta
             callSendAPI(messageData2);
 
-            sleepms(2000);
+            sleep(2000);
 
             var messageData3 = {
                 recipient: {
