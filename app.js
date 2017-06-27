@@ -574,6 +574,9 @@ function sendTextMessageWelcome(recipientId) {
                 }
             };
 
+            //envio mensaje de respuesta
+            callSendAPI(messageData);
+
             var messageData2 = {
                 recipient: {
                     id: recipientId
@@ -594,6 +597,9 @@ function sendTextMessageWelcome(recipientId) {
                     }
                 }
             };
+
+            //envio mensaje de respuesta
+            callSendAPI(messageData2);
 
             var messageData3 = {
                 recipient: {
@@ -619,10 +625,6 @@ function sendTextMessageWelcome(recipientId) {
                 }
             };
 
-            //envio mensaje de respuesta
-            callSendAPI(messageData);
-            //envio mensaje de respuesta
-            callSendAPI(messageData2);
             //envio mensaje de respuesta
             callSendAPI(messageData3);
 
