@@ -578,7 +578,7 @@ function sendTextMessageWelcome(recipientId) {
             //envio mensaje de respuesta
             callSendAPI(messageData);
 
-            sleepms(1000);
+            sleepms(2000);
 
             var messageData2 = {
                 recipient: {
@@ -604,7 +604,7 @@ function sendTextMessageWelcome(recipientId) {
             //envio mensaje de respuesta
             callSendAPI(messageData2);
 
-            sleepms(1000);
+            sleepms(2000);
 
             var messageData3 = {
                 recipient: {
@@ -651,6 +651,10 @@ function sendTextMessageWelcome(recipientId) {
         }
     });
 }
+
+/*function sleep(time) {
+    return new Promise((resolve) => function(resolve, time));
+}*/
 
 /*
  * Send a button message using the Send API.
