@@ -18,7 +18,7 @@ const
   https = require('https'),  
   request = require('request');
 
-var sleep = require('system-sleep');
+var Promise = require('promise');
 var app = express();
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
@@ -655,7 +655,9 @@ function sendTextMessageWelcome(recipientId) {
 /*function sleep(time) {
     return new Promise((resolve) => function(resolve, time));
 }*/
-
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
 /*
  * Send a button message using the Send API.
  *
