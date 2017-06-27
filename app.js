@@ -536,39 +536,16 @@ function sendFileMessage(recipientId) {
  *
  */
 function sendTextMessage(recipientId, messageText) {
-  var messageData;
-
-  if(messageText.toString().trim()==="GET_STARTED_PAYLOAD"){
-
-      console.log("Text: %s", messageText);
-
-      messageData = {
-          recipient: {
-              id: recipientId
-          },
-          message: {
-              text: "Hola " + + ", soy el bot de Novopayment.",
-              metadata: "DEVELOPER_DEFINED_METADATA"
-          }
-      };
-
-      //envio mensaje de respuesta
-      callSendAPI(messageData);
-
-  } else {
-
-      messageData = {
-          recipient: {
-              id: recipientId
-          },
-          message: {
-              text: messageText,
-              metadata: "DEVELOPER_DEFINED_METADATA"
-          }
-      };
-      callSendAPI(messageData);
-  }
-
+  var messageData = {
+      recipient: {
+          id: recipientId
+      },
+      message: {
+          text: messageText,
+          metadata: "DEVELOPER_DEFINED_METADATA"
+      }
+  };
+  callSendAPI(messageData);
 }
 
 /*
@@ -592,15 +569,62 @@ function sendTextMessageWelcome(recipientId) {
                     id: recipientId
                 },
                 message: {
-                    text: "Hola " + jsonObj.first_name + ", soy el bot de Novopayment.",
+                    text: "Hola " + jsonObj.first_name + "! Soy Novo el bot de Novopayment Perú.",
                     metadata: "DEVELOPER_DEFINED_METADATA"
+                }
+            };
+
+            var messageData2 = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    attachment: {
+                        type: "template",
+                        payload: {
+                            template_type: "button",
+                            text: "Para poder interactuar conmigo debes revisar y estar de acuerdo con los siguientes " +
+                            "términos y condiciones: ",
+                            buttons:[{
+                                type: "web_url",
+                                url: "http://provis.com.pe/condiciones-de-uso/",
+                                title: "Leer Términos y Condiciones"
+                            }]
+                        }
+                    }
+                }
+            };
+
+            var messageData3 = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    attachment: {
+                        type: "template",
+                        payload: {
+                            template_type: "button",
+                            text: "¿Aceptas los términos y condiciones?",
+                            buttons:[{
+                                type: "postback",
+                                title: "Si",
+                                payload: "ACEPTO_TC"
+                            }, {
+                                type: "postback",
+                                title: "No",
+                                payload: "NOACEPTO_TC"
+                            }]
+                        }
+                    }
                 }
             };
 
             //envio mensaje de respuesta
             callSendAPI(messageData);
             //envio mensaje de respuesta
-            callSendAPI(messageData);
+            callSendAPI(messageData2);
+            //envio mensaje de respuesta
+            callSendAPI(messageData3);
 
         } else {
             console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
