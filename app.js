@@ -682,7 +682,7 @@ function sendTextMessageAceptoTC(recipientId) {
                     elements: [{
                         title: "Consulta de Saldo",
                         subtitle: "Consulta el saldo de una tarjeta asociada al usuario.",
-                        image_url: "http://remateskozak.cl/wpkozak/wp-content/uploads/header-consulta-saldo1.png",
+                        image_url: "http://applediario.com/wp-content/uploads/2010/05/visapaywaveiphone.jpg",
                         buttons: [{
                             type: "postback",
                             title: "Consultar Saldo",
