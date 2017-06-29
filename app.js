@@ -584,16 +584,7 @@ function sendTextMessage(recipientId, messageText) {
  */
 function sendTextMessageAceptoTC(recipientId, messageText) {
 
-    //valido el tipo de contexto en el que se encuentra el recipientId
-    var messageData = {
-        recipient: {
-            id: recipientId
-        },
-        message: {
-            text: messageText,
-        }
-    };
-
+    messageText = messageText + ' Ahora para iniciar operaciones necesito registrarte primero, por favor introduce tu DNI:';
 
     //valido el tipo de contexto en el que se encuentra el recipientId
     var messageData2 = {
@@ -601,12 +592,13 @@ function sendTextMessageAceptoTC(recipientId, messageText) {
             id: recipientId
         },
         message: {
-            text: 'Ahora para iniciar operaciones necesito registrarte primero, por favor introduce tu DNI:',
+            text: messageText,
             metadata: "SOLICITUD_DNI"
         }
     };
+
     callSendAPI(messageData2);
-    callSendAPI(messageData);
+
 }
 
 /*
