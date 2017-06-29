@@ -593,7 +593,7 @@ function sendTextMessageAceptoTC(recipientId, messageText) {
             text: messageText,
         }
     };
-    callSendAPI(messageData);
+
 
     //valido el tipo de contexto en el que se encuentra el recipientId
     var messageData2 = {
@@ -606,6 +606,7 @@ function sendTextMessageAceptoTC(recipientId, messageText) {
         }
     };
     callSendAPI(messageData2);
+    callSendAPI(messageData);
 }
 
 /*
