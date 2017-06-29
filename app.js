@@ -258,59 +258,59 @@ function receivedMessage(event) {
     // keywords and send back the corresponding example. Otherwise, just echo
     // the text we received.
     switch (messageText) {
-      case 'image':
+        case 'image':
         sendImageMessage(senderID);
         break;
 
-      case 'gif':
+        case 'gif':
         sendGifMessage(senderID);
         break;
 
-      case 'audio':
+        case 'audio':
         sendAudioMessage(senderID);
         break;
 
-      case 'video':
+        case 'video':
         sendVideoMessage(senderID);
         break;
 
-      case 'file':
+        case 'file':
         sendFileMessage(senderID);
         break;
 
-      case 'button':
+        case 'button':
         sendButtonMessage(senderID);
         break;
 
-      case 'generic':
+        case 'generic':
         sendGenericMessage(senderID);
         break;
 
-      case 'receipt':
+        case 'receipt':
         sendReceiptMessage(senderID);
         break;
 
-      case 'quick reply':
+        case 'quick reply':
         sendQuickReply(senderID);
-        break;        
+        break;
 
-      case 'read receipt':
+        case 'read receipt':
         sendReadReceipt(senderID);
-        break;        
+        break;
 
-      case 'typing on':
+        case 'typing on':
         sendTypingOn(senderID);
-        break;        
+        break;
 
-      case 'typing off':
+        case 'typing off':
         sendTypingOff(senderID);
-        break;        
+        break;
 
-      case 'account linking':
+        case 'account linking':
         sendAccountLinking(senderID);
         break;
 
-      default:
+        default:
         sendTextMessage(senderID, messageText);
     }
   } else if (messageAttachments) {
@@ -374,9 +374,15 @@ function receivedPostback(event) {
       console.log("Received postback for user %d and page %d with payload '%s' " +
           "at %d", senderID, recipientID, payload, timeOfPostback);
 
+      //solicito dni para afiliacionle indico al usuario que debe afiliarse para poder ver las opciones disponibles
+
+      sendTextMessage(senderID, "Gracias por aceptar terminos y condiciones");
+      //afilio al usuario
+      //sendTextMessageAfiliacion(senderID);
+
       // When a postback is called, we'll send a message back to the sender to
       // let them know it was successful
-      sendTextMessageAceptoTC(senderID);
+      //sendTextMessageOpcionesUsuario(senderID);
   } else {
       console.log("Received postback for user %d and page %d with payload '%s' " +
           "at %d", senderID, recipientID, payload, timeOfPostback);
@@ -540,16 +546,30 @@ function sendFileMessage(recipientId) {
  *
  */
 function sendTextMessage(recipientId, messageText) {
-  var messageData = {
-      recipient: {
+
+    //valido el tipo de contexto en el que se encuentra el recipientId
+
+
+
+
+
+
+
+
+
+
+
+
+    var messageData = {
+        recipient: {
           id: recipientId
-      },
-      message: {
+        },
+        message: {
           text: messageText,
-          metadata: "DEVELOPER_DEFINED_METADATA"
-      }
-  };
-  callSendAPI(messageData);
+          metadata: "FLUJO_DE_PROCESO_FLOW1"
+        }
+    };
+    callSendAPI(messageData);
 }
 
 /*
@@ -655,7 +675,70 @@ function sendWelcomeTextMessage(recipientId) {
  * Send a text message using the Send API.
  *
  */
-function sendTextMessageAceptoTC(recipientId) {
+function sendTextMessageAfiliacion(recipientId, dni) {
+    request({
+        uri: 'http://172.24.6.148:8014/wallet-api/1.0/account',
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer c25663422f3b5b9bc700e384ce5c9d58',
+            'x-country': 'Pe',
+            'x-language': 'es',
+            'x-channel': '1',
+            'x-product': 'B'
+        },
+        body: {
+            'nid': dni.toString().trim(),
+            'externalId': recipientId
+        }
+
+    }, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            //obtengo objeto
+            var jsonObj = JSON.parse(body);
+            console.log("RC de afiliacion: %s", jsonObj.rc);
+            console.log("MSG de afiliacion: %s", jsonObj.msg);
+
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: "Usted se ha afiliado exitosamente",
+                    metadata: "DEVELOPER_DEFINED_METADATA"
+                }
+            };
+
+            //envio mensaje de respuesta
+            callSendAPI(messageData);
+
+            //muestro opciones para el usuario por afiliacion exitosa
+            sendTextMessageOpcionesUsuario(recipientId);
+
+        } else {
+            console.error("Failed calling User Profile API", response.statusCode, response.statusMessage, body.error);
+
+            var messageData = {
+                recipient: {
+                    id: recipientId
+                },
+                message: {
+                    text: "Error, no ha podido afiliarse.",
+                    metadata: "DEVELOPER_DEFINED_METADATA"
+                }
+            };
+
+            //envio mensaje de respuesta
+            callSendAPI(messageData);
+        }
+    });
+}
+
+/*
+ * Send a text message using the Send API.
+ *
+ */
+function sendTextMessageOpcionesUsuario(recipientId) {
 
     var messageData = {
         recipient: {
