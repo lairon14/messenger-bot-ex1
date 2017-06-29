@@ -242,6 +242,7 @@ function receivedMessage(event) {
     // Just logging message echoes to console
     console.log("Received echo for message %s and app %d with metadata %s", 
       messageId, appId, metadata);
+
     return;
   } else if (quickReply) {
     var quickReplyPayload = quickReply.payload;
@@ -311,7 +312,12 @@ function receivedMessage(event) {
         break;
 
         default:
-        sendTextMessage(senderID, messageText);
+            if (metadata==='SOLICITUD_DNI'){
+                sendTextMessageAfiliacion(senderID, messageText);
+            } else {
+                sendTextMessage(senderID, messageText);
+            }
+
     }
   } else if (messageAttachments) {
     sendTextMessage(senderID, "Message with attachment received");
@@ -376,7 +382,7 @@ function receivedPostback(event) {
 
       //solicito dni para afiliacionle indico al usuario que debe afiliarse para poder ver las opciones disponibles
 
-      sendTextMessage(senderID, "Gracias por aceptar terminos y condiciones");
+      sendTextMessageAceptoTC(senderID, "Gracias por aceptar nuestros términos y condiciones.");
       //afilio al usuario
       //sendTextMessageAfiliacion(senderID);
 
@@ -576,6 +582,36 @@ function sendTextMessage(recipientId, messageText) {
  * Send a text message using the Send API.
  *
  */
+function sendTextMessageAceptoTC(recipientId, messageText) {
+
+    //valido el tipo de contexto en el que se encuentra el recipientId
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            text: messageText,
+        }
+    };
+    callSendAPI(messageData);
+
+    //valido el tipo de contexto en el que se encuentra el recipientId
+    var messageData2 = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            text: 'Ahora para iniciar operaciones necesito registrarte primero, por favor introduce tu DNI:',
+            metadata: "SOLICITUD_DNI"
+        }
+    };
+    callSendAPI(messageData2);
+}
+
+/*
+ * Send a text message using the Send API.
+ *
+ */
 function sendWelcomeTextMessage(recipientId) {
     request({
         uri: 'https://graph.facebook.com/v2.6/' + recipientId,
@@ -705,7 +741,6 @@ function sendTextMessageAfiliacion(recipientId, dni) {
                 },
                 message: {
                     text: "Usted se ha afiliado exitosamente",
-                    metadata: "DEVELOPER_DEFINED_METADATA"
                 }
             };
 
