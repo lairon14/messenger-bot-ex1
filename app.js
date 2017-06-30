@@ -17,6 +17,8 @@ const
   express = require('express'),
   https = require('https'),  
   request = require('request');
+var apiai = require('apiai');
+var appAi = apiai("5b089b85f44544048e5b9bc49b049583");
 
 var app = express();
 app.set('port', process.env.PORT || 5000);
@@ -312,6 +314,7 @@ function receivedMessage(event) {
         break;
 
         default:
+            console.log("ENTRO EN SOLICITUD DEFAULT")
             if (metadata==='SOLICITUD_DNI'){
                 sendTextMessageAfiliacion(senderID, messageText);
             } else {
@@ -555,27 +558,29 @@ function sendTextMessage(recipientId, messageText) {
 
     //valido el tipo de contexto en el que se encuentra el recipientId
 
+    var request = app.textRequest(messageText, {
+        sessionId: '<unique session id>'
+    });
 
+    request.on('response', function(response) {
+        console.log(response);
+        var messageData = {
+            recipient: {
+                id: recipientId
+            },
+            message: {
+                text: response.result.fulfillment.speech,
+            }
+        };
+        callSendAPI(messageData);
+    });
 
+    request.on('error', function(error) {
+        console.log(error);
+    });
 
+    request.end();
 
-
-
-
-
-
-
-
-    var messageData = {
-        recipient: {
-          id: recipientId
-        },
-        message: {
-          text: messageText,
-          metadata: "FLUJO_DE_PROCESO_FLOW1"
-        }
-    };
-    callSendAPI(messageData);
 }
 
 /*
