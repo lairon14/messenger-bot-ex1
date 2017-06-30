@@ -558,7 +558,7 @@ function sendTextMessage(recipientId, messageText) {
 
     //valido el tipo de contexto en el que se encuentra el recipientId
 
-    var request = app.textRequest(messageText, {
+    var request = appAi.textRequest(messageText, {
         sessionId: '<unique session id>'
     });
 
