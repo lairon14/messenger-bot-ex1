@@ -166,7 +166,7 @@ app.post('/login', function(req, res) {
     console.log("RESP1: " + req.body.username);
     console.log("RESP2: " + req.body.password);
 
-    res.sendStatus(200);
+    res.redirect(req.body.urlredirect);
 });
 
 /*
