@@ -17,6 +17,7 @@ const
   express = require('express'),
   https = require('https'),  
   request = require('request');
+var path = require('path');
 var apiai = require('apiai');
 var appAi = apiai("5b089b85f44544048e5b9bc49b049583");
 
