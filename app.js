@@ -158,9 +158,8 @@ app.post('/login', function(req, res) {
     //
     // You must send back a 200, within 20 seconds, to let us know you've
     // successfully received the callback. Otherwise, the request will time out.
-    var n1 = req.body.object.name;
     var name2 = req.body.username;
-    console.log("RESP1: %s", n1);
+    console.log("RESP1: %s", name2);
     console.log("RESP2: %s", req.body.object);
     console.log("RESP3: %s", JSON.parse(req.body.object));
 
