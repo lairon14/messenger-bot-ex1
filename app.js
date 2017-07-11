@@ -313,6 +313,10 @@ function receivedMessage(event) {
         sendAccountLinking(senderID);
         break;
 
+        case 'account unlinking':
+            sendAccountUnlinking(senderID);
+            break;
+
         default:
             console.log("ENTRO EN SOLICITUD DEFAULT")
             if (metadata==='SOLICITUD_DNI'){
@@ -1086,6 +1090,32 @@ function sendAccountLinking(recipientId) {
   };  
 
   callSendAPI(messageData);
+}
+
+/*
+ * Send a message with the account unlinking call-to-action
+ *
+ */
+function sendAccountUnlinking(recipientId) {
+    var messageData = {
+        recipient: {
+            id: recipientId
+        },
+        message: {
+            attachment: {
+                type: "template",
+                payload: {
+                    template_type: "button",
+                    text: "Logout of your Account?",
+                    buttons:[{
+                        type: "account_unlink"
+                    }]
+                }
+            }
+        }
+    };
+
+    callSendAPI(messageData);
 }
 
 /*
