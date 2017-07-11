@@ -19,10 +19,10 @@ LICENSE file in the root directory of this source tree.
 
     <h1>Login</h1>
 
-    <div>
-      This should be a login page. If the user successfully logs, they should
-      be redirect to this link: <a href="<%= redirectURISuccess %>">Complete Account Link</a>
-    </div>
+    <!--<div>-->
+      <!--This should be a login page. If the user successfully logs, they should-->
+      <!--be redirect to this link: <a href="<%= redirectURISuccess %>">Complete Account Link</a>-->
+    <!--</div>-->
 
     <form method="post" action="/login">
     <p>
@@ -34,24 +34,24 @@ LICENSE file in the root directory of this source tree.
       <input type="text" name="password">
     </p>
       <p>
-        <input type="text" name="urlredirect" value="<%= redirectURISuccess %>">
+        <input type="hidden" name="urlredirect" value="<%= redirectURISuccess %>">
       </p>
     <p>
       <input type="submit" value="Login">
     </p>
     </form>
 
-    <div>
-      Account linking token: <%= accountLinkingToken %> 
-    </div>
+    <!--<div>-->
+      <!--Account linking token: <%= accountLinkingToken %> -->
+    <!--</div>-->
 
-    <div>
-      Redirect URI: <%= redirectURI %> 
-    </div>
+    <!--<div>-->
+      <!--Redirect URI: <%= redirectURI %> -->
+    <!--</div>-->
 
-    <div>
-      Redirect URI Successful: <%= redirectURISuccess %> 
-    </div>
+    <!--<div>-->
+      <!--Redirect URI Successful: <%= redirectURISuccess %> -->
+    <!--</div>-->
     
 
 
