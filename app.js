@@ -23,6 +23,10 @@ var appAi = apiai("5b089b85f44544048e5b9bc49b049583");
 var app = express();
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
 app.use(bodyParser.json({ verify: verifyRequestSignature }));
 app.use(express.static('public'));
 
@@ -153,14 +157,13 @@ app.get('/authorize', function(req, res) {
  *
  */
 app.post('/login', function(req, res) {
-
     // Assume all went well.
     //
     // You must send back a 200, within 20 seconds, to let us know you've
     // successfully received the callback. Otherwise, the request will time out.
     var name2 = req.body.name;
-    console.log("RESP1: %s", name2);
-    console.log("RESP2: %s", req.body.password);
+    console.log("RESP1: " + req.body.username);
+    console.log("RESP2: " + req.body.password);
 
     res.sendStatus(200);
 });
