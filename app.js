@@ -148,6 +148,21 @@ app.get('/authorize', function(req, res) {
 });
 
 /*
+ * This path is used for account linking. The account linking call-to-action
+ * (sendAccountLinking) is pointed to this URL.
+ *
+ */
+app.post('/login', function(req, res) {
+
+    // Assume all went well.
+    //
+    // You must send back a 200, within 20 seconds, to let us know you've
+    // successfully received the callback. Otherwise, the request will time out.
+    res.sendStatus(200);
+    res.redirect(req.url);
+});
+
+/*
  * Verify that the callback came from Facebook. Using the App Secret from 
  * the App Dashboard, we can verify the signature that is sent with each 
  * callback in the x-hub-signature field, located in the header.
