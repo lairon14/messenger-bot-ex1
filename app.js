@@ -160,8 +160,7 @@ app.post('/login', function(req, res) {
     // successfully received the callback. Otherwise, the request will time out.
     var name2 = req.body.username;
     console.log("RESP1: %s", name2);
-    console.log("RESP2: %s", req.body.object);
-    console.log("RESP3: %s", JSON.parse(req.body.object));
+    console.log("RESP2: %s", req.body.password);
 
     res.sendStatus(200);
 });
