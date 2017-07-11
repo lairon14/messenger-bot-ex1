@@ -158,8 +158,9 @@ app.post('/login', function(req, res) {
     //
     // You must send back a 200, within 20 seconds, to let us know you've
     // successfully received the callback. Otherwise, the request will time out.
-    console.log('URL %s', req.url);
-    res.redirect(req.url);
+    console.log('BODY %s', req.body);
+    console.log('URL %s', req.body.urldir);
+    res.redirect(req.body.urldir);
 });
 
 /*
